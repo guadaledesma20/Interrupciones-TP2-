@@ -1,0 +1,21 @@
+#include <Servo.h>
+Servo myservo;
+int posicion = 1;
+int valor = 1;
+void setup(){
+
+attachInterrupt(digitalPinToInterrupt(2), pulsador , RISING);
+myservo.attach(5);
+}
+void loop(){
+posicion = posicion + valor;
+if(posicion > 180 || posicion < 0){
+valor = valor * -1;
+}
+myservo.write(posicion);
+delay(20);
+}
+
+void pulsador(){
+valor = valor * -1;
+}
